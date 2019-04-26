@@ -1,0 +1,10 @@
+*.pyc
+__pycache__
+
+caffe_pb2.py
+
+*.prototxt
+*.caffemodel
+
+!segnet_original.prototxt
+!segnet_original.caffemodel
