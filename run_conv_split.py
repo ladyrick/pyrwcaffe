@@ -51,7 +51,7 @@ def split_convlayers(net):
                 conv_split_layer.convolution_param.num_output = 1
                 for blob in conv_split_layer.blobs:
                     blob.shape.dim[0] = 1
-                    fmap_size = len(blob.data) / fmap_num
+                    fmap_size = int(len(blob.data) / fmap_num)
                     del blob.data[(i + 1) * fmap_size:]
                     del blob.data[:i * fmap_size]
 
@@ -65,7 +65,7 @@ def split_convlayers(net):
                 bn_split_layer.top.append("%s_split_%02d" % (bn_layer.name, i))
                 for blob in bn_split_layer.blobs:
                     blob.shape.dim[1] = 1
-                    fmap_size = len(blob.data) / fmap_num
+                    fmap_size = int(len(blob.data) / fmap_num)
                     del blob.data[(i + 1) * fmap_size:]
                     del blob.data[:i * fmap_size]
             print("append conv split layers: %s_split_{00-%d}" % (conv_layer.name, fmap_num - 1))
